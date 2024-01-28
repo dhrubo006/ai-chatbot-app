@@ -13,7 +13,6 @@
   padding: 20px;
 }
 
-
 .chatbot-container {
   flex-grow: 1; /* Take the remaining width */
   background-color: #f0f7ff; /* Soothing blue background */
@@ -24,7 +23,7 @@
   overflow: hidden; /* Ensure nothing overflows from the container */
   display: flex;
   flex-direction: column;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   justify-content: space-between;
   height: 95vh;
 }
@@ -75,10 +74,12 @@
   background-color: #f7f7f7;
   display: flex;
   border-top: 1px solid #e0e0e0;
+  align-items: center; /* Align items vertically */
 }
 
 .text-input {
   flex-grow: 1;
+  flex-shrink: 1; /* Allows input to shrink as needed */
   padding: 10px 15px;
   margin-right: 10px;
   border: 1px solid #d4d4d4;
@@ -88,6 +89,8 @@
 
 .send-button,
 .record-button {
+  flex-grow: 0; /* Prevents buttons from growing */
+  flex-shrink: 0; /* Prevents buttons from shrinking */
   background: #007bff;
   color: white;
   border: none;
@@ -97,6 +100,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 40px; /* Fixed width for buttons */
+  height: 40px; /* Fixed height for buttons */
 }
 
 .send-button:hover,
@@ -111,6 +116,25 @@
     border-radius: 0; /* Full width on smaller screens */
   }
 
+  .chatbot-input-form {
+    flex-direction: column; /* Stack elements vertically */
+    padding: 5px; /* Reduced padding */
+  }
+
+  .text-input,
+  .send-button,
+  .record-button {
+    width: 100%; /* Full width for smaller screens */
+    margin-bottom: 5px; /* Space between elements */
+  }
+  .send-button,
+  .record-button {
+    /* Adjustments for smaller screens */
+    /*width: auto; /* Adjust width as needed */
+    padding: 10px; /* Adjust padding for smaller size */
+    font-size: 0.8em; /* Adjust font size for smaller screens */
+    margin: 5px; /* Ensure some margin around the button */
+  }
 
   .messages-container {
     padding: 15px; /* Less padding on smaller screens */
@@ -136,4 +160,3 @@
 .message {
   animation: fade-in 0.5s ease-out;
 }
-

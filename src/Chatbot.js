@@ -125,51 +125,56 @@ const Chatbot = () => {
       const aiMessage = { type: "text", content: aiResponse, user: false };
       setMessages((prevMessages) => [...prevMessages, aiMessage]);
       speak(aiResponse); // Read the AI response aloud
-      console.log('speak function called')
+      console.log("speak function called");
     }
     setInput("");
   };
 
   return (
-    <div className="chatbot-container">
-      <div className="chatbot-name">AI Chatbot</div>
-      <div className="messages-container">
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            className={`message ${message.user ? "user" : "bot"}`}
-          >
-            {message.type === "text" ? (
-              message.content
-            ) : (
-              <audio controls src={message.content}>
-                Your browser does not support the audio element.
-              </audio>
-            )}
-          </div>
-        ))}
+    <div className="app-container">
+      <div className="sidebar left-sidebar">
+        <div className="chatbot-name">Venessa</div>
       </div>
-      <form onSubmit={handleSubmit} className="chatbot-input-form">
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          className="text-input"
-          placeholder="Type your message here..."
-        />
-        <button type="submit" className="send-button">
-          <FontAwesomeIcon icon={faPaperPlane} />
-        </button>
-        <button
-          type="button"
-          onClick={isRecording ? stopRecording : startRecording}
-          className="record-button"
-        >
-          <FontAwesomeIcon
-            icon={isRecording ? faMicrophoneSlash : faMicrophone}
+
+      <div className="chatbot-container">
+        <div className="messages-container">
+          {messages.map((message, index) => (
+            <div
+              key={index}
+              className={`message ${message.user ? "user" : "bot"}`}
+            >
+              {message.type === "text" ? (
+                message.content
+              ) : (
+                <audio controls src={message.content}>
+                  Your browser does not support the audio element.
+                </audio>
+              )}
+            </div>
+          ))}
+        </div>
+        <form onSubmit={handleSubmit} className="chatbot-input-form">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            className="text-input"
+            placeholder="Type your message here..."
           />
-        </button>
-      </form>
+          <button type="submit" className="send-button">
+            <FontAwesomeIcon icon={faPaperPlane} />
+          </button>
+          <button
+            type="button"
+            onClick={isRecording ? stopRecording : startRecording}
+            className="record-button"
+          >
+            <FontAwesomeIcon
+              icon={isRecording ? faMicrophoneSlash : faMicrophone}
+            />
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

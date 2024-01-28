@@ -2,23 +2,23 @@
 
 .app-container {
   display: flex;
-  height: 100vh; /* Full height of the viewport */
+  height: 100vh; /* Full height */
+  background-color: #9ebcc4;
 }
 
 .sidebar {
-  width: 250px; /* Sidebar width */
-  background-color: #2c3e50; /* Sidebar background color */
-  color: #ecf0f1; /* Sidebar text color */
-  overflow-y: auto; /* Enable scroll on overflow */
-  padding: 20px;
+  width: 20%; /* Adjust as needed */
+  background-color: #f1f1f1; /* Light gray background */
+  padding: 20px; /* Padding inside the sidebar */
+  box-sizing: border-box; /* Ensures padding does not add to width */
 }
 
 .chatbot-container {
   flex-grow: 1; /* Take the remaining width */
-  background-color: #f0f7ff; /* Soothing blue background */
+  background-color: #9ebcc4; /* Light gray background for the chat area */
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 20%;
+  max-width: 60%; /* Adjusted for better appearance */
   margin: 20px auto;
   overflow: hidden; /* Ensure nothing overflows from the container */
   display: flex;
@@ -26,11 +26,16 @@
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   justify-content: space-between;
   height: 95vh;
+  color: #000000; /* Text color */
 }
 
+
+
+
+
 .chatbot-name {
-  background-color: #5b6d8d; /* Darker shade for contrast */
-  color: #ffffff;
+  background-color: #297b9d; /* Medium blue background for the title */
+  color: #ffffff; /* White text for better readability */
   text-align: center;
   padding: 15px;
   font-size: 1.2em;
@@ -43,7 +48,7 @@
   flex-grow: 1;
   padding: 20px;
   overflow-y: auto;
-  background-color: #a5a4c5;
+  background-color: #9ebcc4; /* Light gray background for message area */
 }
 
 .message {
@@ -58,22 +63,22 @@
 }
 
 .message.user {
-  background-color: #366da8;
+  background-color: #297b9d; /* Medium blue for user messages */
   color: white;
   align-self: flex-end; /* Align to the right */
 }
 
 .message.bot {
-  background-color: #e9ecef; /* Slightly gray background for the bot */
-  color: black;
+  background-color: #ffffff; /* White background for bot messages */
+  color: #343541; /* Dark slate gray text for bot messages */
   align-self: flex-start; /* Align to the left */
 }
 
 .chatbot-input-form {
-  padding: 10px;
-  background-color: #f7f7f7;
+  padding: 5px; /* Reduced padding for minimalistic look */
+  background-color: #9ebcc4; /* White background for input area */
   display: flex;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid #d4d4d4;
   align-items: center; /* Align items vertically */
 }
 
@@ -85,13 +90,15 @@
   border: 1px solid #d4d4d4;
   border-radius: 20px;
   outline: none;
+  background-color: #ffffff; /* White background for text input */
+  color: #000000; /* Black text color */
 }
 
 .send-button,
 .record-button {
   flex-grow: 0; /* Prevents buttons from growing */
   flex-shrink: 0; /* Prevents buttons from shrinking */
-  background: #007bff;
+  background: #297b9d; /* Medium blue for buttons */
   color: white;
   border: none;
   border-radius: 50%;
@@ -106,14 +113,23 @@
 
 .send-button:hover,
 .record-button:hover {
-  background: #0056b3;
+  background: #1d5b6f; /* Darker shade of blue for button hover effect */
 }
 
-/* Add responsive design */
+/* Responsive design */
 @media (max-width: 600px) {
   .chatbot-container {
     margin: 10px;
     border-radius: 0; /* Full width on smaller screens */
+  }
+
+  .sidebar {
+    width: 100%; /* Full width for small screens */
+    display: none; /* Or adjust as needed */
+  }
+
+  .chatbot-container {
+    width: 100%; /* Full width for small screens */
   }
 
   .chatbot-input-form {
@@ -129,8 +145,6 @@
   }
   .send-button,
   .record-button {
-    /* Adjustments for smaller screens */
-    /*width: auto; /* Adjust width as needed */
     padding: 10px; /* Adjust padding for smaller size */
     font-size: 0.8em; /* Adjust font size for smaller screens */
     margin: 5px; /* Ensure some margin around the button */
@@ -145,7 +159,7 @@
   }
 }
 
-/* Add a subtle animation for messages */
+/* Animation for messages */
 @keyframes fade-in {
   from {
     opacity: 0;

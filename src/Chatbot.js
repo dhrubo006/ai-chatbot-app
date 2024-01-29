@@ -117,6 +117,8 @@ const Chatbot = () => {
     setInput("");
   };
 
+  ///////////////////////////////////////////////////XXXXXXXXXXXXXXXX//////////////////////////////////////////////////////////////////////
+
   ///////////////////////////////////////////////////  USER INTERFACE //////////////////////////////////////////////////////////////////////
 
   return (
@@ -151,6 +153,15 @@ const Chatbot = () => {
         </div>
         <form onSubmit={handleSubmit} className="chatbot-input-form">
           <div className="input-wrapper">
+            <button
+              type="button"
+              onClick={isRecording ? stopRecording : startRecording}
+              className={`record-button ${isRecording ? "recording" : ""}`}
+            >
+              <FontAwesomeIcon
+                icon={isRecording ? faMicrophoneSlash : faMicrophone}
+              />
+            </button>
             <input
               type="text"
               value={input}
@@ -160,15 +171,6 @@ const Chatbot = () => {
             />
             <button type="submit" className="send-button">
               <FontAwesomeIcon icon={faPaperPlane} />
-            </button>
-            <button
-              type="button"
-              onClick={isRecording ? stopRecording : startRecording}
-              className="record-button"
-            >
-              <FontAwesomeIcon
-                icon={isRecording ? faMicrophoneSlash : faMicrophone}
-              />
             </button>
           </div>
         </form>

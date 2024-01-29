@@ -88,7 +88,8 @@
 .text-input {
   flex-grow: 1;
   padding: 10px 15px;
-  padding-right: 80px; /* Make room for buttons */
+  padding-left: 50px;
+  padding-right: 60px; /* Make room for buttons */
   border: 1px solid #d4d4d4;
   border-radius: 20px;
   outline: none;
@@ -105,10 +106,18 @@
   top: 50%;
   transform: translateY(-50%);
   margin: 0;
+  color: #297b9d;
 }
 
 .record-button {
-  right: 10px; /* Adjust as needed */
+  left: 10px; /* Place the button 10px from the left edge of the input-wrapper */
+  right: auto;
+  color: #297b9d; /* Icon color when not recording */
+}
+
+.record-button.recording {
+  background-color: #297b9d; /* Medium blue background when recording */
+  color: white; /* White icon color when recording */
 }
 
 .send-button:hover,
@@ -116,9 +125,12 @@
   background: #1d5b6f; /* Darker shade of blue for button hover effect */
 }
 
-
 .send-button {
   color: #297b9d !important;
+  position: absolute;
+  right: 10px; /* Adjust this value as needed to move the send button more to the right */
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /* Custom styles for react-h5-audio-player */
@@ -134,6 +146,29 @@
 
 .rhap_main-controls .rhap_button-clear {
   color: white !important;
+}
+
+/* Style the scrollbar track (background) for WebKit browsers */
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Light gray track as seen in ChatGPT */
+}
+
+/* Style the scrollbar thumb (the part that you drag) for WebKit browsers */
+::-webkit-scrollbar-thumb {
+  background-color: #c4c4c4; /* Darker gray thumb for contrast */
+  border-radius: 10px; /* Rounded corners on the scrollbar thumb */
+  border: 3px solid #f1f1f1; /* Creates padding effect on the thumb */
+}
+
+/* Style the scrollbar itself (width and color) for WebKit browsers */
+::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+/* For Firefox */
+html {
+  scrollbar-color: #c4c4c4 #f1f1f1; /* thumb and track colors */
+  scrollbar-width: thin; /* Similar to setting the width in WebKit browsers */
 }
 
 /* Responsive design */

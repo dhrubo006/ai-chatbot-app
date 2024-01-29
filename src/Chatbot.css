@@ -29,10 +29,6 @@
   color: #000000; /* Text color */
 }
 
-
-
-
-
 .chatbot-name {
   background-color: #297b9d; /* Medium blue background for the title */
   color: #ffffff; /* White text for better readability */
@@ -75,45 +71,69 @@
 }
 
 .chatbot-input-form {
-  padding: 5px; /* Reduced padding for minimalistic look */
-  background-color: #9ebcc4; /* White background for input area */
+  position: relative; /* Needed for absolute positioning of children */
+  padding: 5px;
+  background-color: #9ebcc4; /* Matching background color for seamless integration */
   display: flex;
+  align-items: center;
   border-top: 1px solid #d4d4d4;
-  align-items: center; /* Align items vertically */
+}
+
+.input-wrapper {
+  position: relative;
+  flex-grow: 1; /* Allows input to grow and fill space */
+  display: flex; /* Aligns input and buttons inline */
 }
 
 .text-input {
   flex-grow: 1;
-  flex-shrink: 1; /* Allows input to shrink as needed */
   padding: 10px 15px;
-  margin-right: 10px;
+  padding-right: 80px; /* Make room for buttons */
   border: 1px solid #d4d4d4;
   border-radius: 20px;
   outline: none;
   background-color: #ffffff; /* White background for text input */
   color: #000000; /* Black text color */
+  margin-right: 0; /* Reset margin */
 }
 
+/* Position buttons absolutely within the input wrapper */
 .send-button,
 .record-button {
-  flex-grow: 0; /* Prevents buttons from growing */
-  flex-shrink: 0; /* Prevents buttons from shrinking */
-  background: #297b9d; /* Medium blue for buttons */
-  color: white;
-  border: none;
-  border-radius: 50%;
-  padding: 10px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px; /* Fixed width for buttons */
-  height: 40px; /* Fixed height for buttons */
+  position: absolute;
+  right: 50px; /* Adjust as needed, make sure there is enough room for both buttons */
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+}
+
+.record-button {
+  right: 10px; /* Adjust as needed */
 }
 
 .send-button:hover,
 .record-button:hover {
   background: #1d5b6f; /* Darker shade of blue for button hover effect */
+}
+
+
+.send-button {
+  color: #297b9d !important;
+}
+
+/* Custom styles for react-h5-audio-player */
+.rhap_container {
+  background-color: transparent !important;
+  color: white !important;
+}
+
+.rhap_progress-filled,
+.rhap_progress-indicator {
+  background: white !important;
+}
+
+.rhap_main-controls .rhap_button-clear {
+  color: white !important;
 }
 
 /* Responsive design */

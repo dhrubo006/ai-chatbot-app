@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Chatbot.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,6 +7,8 @@ import {
   faMicrophoneSlash,
   faMicrophone,
 } from "@fortawesome/free-solid-svg-icons";
+import AudioPlayer from "react-h5-audio-player";
+import "react-h5-audio-player/lib/styles.css"; // Default styles
 
 const Chatbot = () => {
   const [input, setInput] = useState("");
@@ -18,23 +20,8 @@ const Chatbot = () => {
     speechSynthesis.speak(utterance);
   };
 
-  // Function to send user input to the backend and get AI response
-  /*const chatWithGPTJ = async (userInput, audio = false) => {
-    try {
-      const payload = audio ? userInput : { text: userInput };
-      //const headers = audio ? { "Content-Type": "multipart/form-data" } : {};
-      const response = await axios.post(
-        "http://127.0.0.1:5000/generate",
-        payload,
-        { headers }
-      );
-      console.log("Message sent:", response.data);
-      return response.data.response;
-    } catch (error) {
-      console.error("Error communicating with the backend:", error);
-      return "";
-    }
-  };*/
+  ///////////////////////////////////// JAVASCRIPT FUNCTIONS  /////////////////////////////////////////////////////////////////////
+
   // Function to send user input to the backend and get AI response
   const chatWithGPTJ = async (userInput, audio = false) => {
     try {
@@ -130,6 +117,8 @@ const Chatbot = () => {
     setInput("");
   };
 
+  ///////////////////////////////////////////////////  USER INTERFACE //////////////////////////////////////////////////////////////////////
+
   return (
     <div className="app-container">
       <div className="sidebar left-sidebar">
@@ -146,33 +135,42 @@ const Chatbot = () => {
               {message.type === "text" ? (
                 message.content
               ) : (
-                <audio controls src={message.content}>
-                  Your browser does not support the audio element.
-                </audio>
+                <AudioPlayer
+                  src={message.content}
+                  onPlay={(e) => console.log("onPlay")}
+                  // You can add other props you need for the audio player
+                  customVolumeControls={[]} // Hides volume controls
+                  customAdditionalControls={[]} // Hides additional controls
+                  customProgressBarSection={[]} // Custom progress bar
+                  customControlsSection={["MAIN_CONTROLS"]} // Only shows main controls like play/pause
+                  // More customization props can be added according to your needs
+                />
               )}
             </div>
           ))}
         </div>
         <form onSubmit={handleSubmit} className="chatbot-input-form">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            className="text-input"
-            placeholder="Type your message here..."
-          />
-          <button type="submit" className="send-button">
-            <FontAwesomeIcon icon={faPaperPlane} />
-          </button>
-          <button
-            type="button"
-            onClick={isRecording ? stopRecording : startRecording}
-            className="record-button"
-          >
-            <FontAwesomeIcon
-              icon={isRecording ? faMicrophoneSlash : faMicrophone}
+          <div className="input-wrapper">
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              className="text-input"
+              placeholder="Type your message here..."
             />
-          </button>
+            <button type="submit" className="send-button">
+              <FontAwesomeIcon icon={faPaperPlane} />
+            </button>
+            <button
+              type="button"
+              onClick={isRecording ? stopRecording : startRecording}
+              className="record-button"
+            >
+              <FontAwesomeIcon
+                icon={isRecording ? faMicrophoneSlash : faMicrophone}
+              />
+            </button>
+          </div>
         </form>
       </div>
     </div>

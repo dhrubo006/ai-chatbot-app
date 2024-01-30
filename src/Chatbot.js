@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import "./Chatbot.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,7 +8,9 @@ import {
   faMicrophone,
 } from "@fortawesome/free-solid-svg-icons";
 import AudioPlayer from "react-h5-audio-player";
-import "react-h5-audio-player/lib/styles.css"; // Default styles
+import "react-h5-audio-player/lib/styles.css";
+
+///////////////////////////////////// CHATBOT FUNCTIONS  /////////////////////////////////////////////////////////////////////
 
 const Chatbot = () => {
   const [input, setInput] = useState("");
@@ -19,8 +21,6 @@ const Chatbot = () => {
     const utterance = new SpeechSynthesisUtterance(text);
     speechSynthesis.speak(utterance);
   };
-
-  ///////////////////////////////////// JAVASCRIPT FUNCTIONS  /////////////////////////////////////////////////////////////////////
 
   // Function to send user input to the backend and get AI response
   const chatWithGPTJ = async (userInput, audio = false) => {
@@ -117,6 +117,15 @@ const Chatbot = () => {
     setInput("");
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      // If Enter is pressed without Shift
+      e.preventDefault(); // Prevent the default behavior (newline)
+      handleSubmit(e); // Send the message
+    }
+    // If Shift + Enter is pressed, do nothing and allow the newline to be inserted
+  };
+
   ///////////////////////////////////////////////////XXXXXXXXXXXXXXXX//////////////////////////////////////////////////////////////////////
 
   ///////////////////////////////////////////////////  USER INTERFACE //////////////////////////////////////////////////////////////////////
@@ -162,12 +171,13 @@ const Chatbot = () => {
                 icon={isRecording ? faMicrophoneSlash : faMicrophone}
               />
             </button>
-            <input
-              type="text"
+            <textarea
               value={input}
               onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
               className="text-input"
               placeholder="Type your message here..."
+              rows={1} // Starts with a single line
             />
             <button type="submit" className="send-button">
               <FontAwesomeIcon icon={faPaperPlane} />

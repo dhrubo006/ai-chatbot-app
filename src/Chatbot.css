@@ -47,6 +47,8 @@
   background-color: #9ebcc4; /* Light gray background for message area */
 }
 
+
+
 .message {
   max-width: 75%;
   margin-bottom: 10px;
@@ -96,6 +98,9 @@
   background-color: #ffffff; /* White background for text input */
   color: #000000; /* Black text color */
   margin-right: 0; /* Reset margin */
+  max-height: 100px; /* Set a maximum height */
+  overflow-y: auto; /* Allows for vertical scrolling */
+  resize: none;
 }
 
 /* Position buttons absolutely within the input wrapper */
